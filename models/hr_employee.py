@@ -19,9 +19,9 @@ class HREmployee(models.Model):
 
         for employee in self:
             if not employee.biometric_id or not employee.hikvision_id:
-                employee.hikvision_register = True
+                employee.hikvision_register = False
             else:
-                employee.hikvision_register = employee.hikvision_id.validate_user(employee)
+                employee.hikvision_register = not employee.hikvision_id.validate_user(employee)
 
     def action_create_user(self):
 
@@ -43,7 +43,19 @@ class HREmployee(models.Model):
                         }
                     }
             else:
-                if employee.hikvision_id.validate_user(employee):
+                if not employee.hikvision_id.validate_user(employee):
+                    _logger.info("User: %s already exists.", employee.name)
+                    return {
+                        'type': 'ir.actions.client',
+                        'tag': 'display_notification',
+                        'params': {
+                            'title': _('User Error'),
+                            'message': f'User: {employee.name} already exists',
+                            'type': 'warning',
+                            'sticky': False
+                        }
+                    }
+                else:
                     if employee.hikvision_id.upload_user(employee):
                         _logger.info("User: %s uploaded successfully.", employee.name)
                         return {
@@ -68,15 +80,3 @@ class HREmployee(models.Model):
                                 'sticky': False
                             }
                         }
-                else:
-                    _logger.info("User: %s already exists.", employee.name)
-                    return {
-                        'type': 'ir.actions.client',
-                        'tag': 'display_notification',
-                        'params': {
-                            'title': _('User Error'),
-                            'message': f'User: {employee.name} already exists',
-                            'type': 'warning',
-                            'sticky': False
-                        }
-                    }

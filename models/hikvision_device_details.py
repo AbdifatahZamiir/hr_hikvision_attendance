@@ -108,7 +108,7 @@ class HikvisionDeviceDetails(models.Model):
                 }
 
     def validate_user(self, employee):
-        """ Validate user to see if is already upload """
+        """ Validate user to see if is already upload. Returns True if user does NOT exist (can be uploaded) """
         if not self.device_ip or not self.port or not self.device_password or not self.device_user:
             conn = Hikvision(employee.hikvision_id.device_ip,
                             employee.hikvision_id.port,
@@ -132,10 +132,7 @@ class HikvisionDeviceDetails(models.Model):
                     }
             }
             response = conn.user_exist(end_point,search_user)
-            if response:
-                return True
-            else:
-                return False
+            return response
 
     def generate_general_token(self, employee_id, secret_key):
         """
@@ -223,7 +220,10 @@ class HikvisionDeviceDetails(models.Model):
         try:
             for employee in employees:
                 if employee.biometric_id and employee.hikvision_id:
-                    if self.validate_user(employee):
+                    if not self.validate_user(employee):
+                        _logger.info(_("User: %s already exists."), employee.name)
+                        error_messajes.append(employee.name)
+                    else:
                         if self.upload_user(employee):
                             employee.write({
                                 'hikvision_id': self.id
@@ -232,9 +232,7 @@ class HikvisionDeviceDetails(models.Model):
                             success += 1
                         else:
                             _logger.info(_("User: %s can't be uploaded"), employee.name)
-                    else:
-                        _logger.info(_("User: %s already exists."), employee.name)
-                        error_messajes.append(employee.name)
+                            error_messajes.append(employee.name)
                 else:
                     _logger.info(_("User: %s has no biometric_id or hikvision_id"), employee.name)
                     error_messajes.append(employee.name)
