@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hikvision_device_details_manager,access.hr.hikvision,model_hr_hikvision,hr_hikvision_attendance.hikvision_manager_group,1,1,1,1
+hr_attendance_wizard_manager,access.hr.attendance.wizard,model_hr_attendance_wizard,hr_hikvision_attendance.hikvision_manager_group,1,1,1,1
+hr_hikvision_attendance_manager,access.hr.hikvision.attendance,model_hr_hikvision_attendance,hr_hikvision_attendance.hikvision_manager_group,1,1,1,1
+hikvision_download_wizard_manager,access.hikvision.download.wizard,model_hikvision_download_wizard,hr_hikvision_attendance.hikvision_manager_group,1,1,1,1
+hikvision_device_details_hr,access.hr.hikvision,model_hr_hikvision,hr_hikvision_attendance.hikvision_hr_group,1,0,0,0
+hr_attendance_wizard_hr,access.hr.attendance.wizard,model_hr_attendance_wizard,hr_hikvision_attendance.hikvision_hr_group,1,0,0,0
+hr_hikvision_attendance_hr,access.hr.hikvision.attendance,model_hr_hikvision_attendance,hr_hikvision_attendance.hikvision_hr_group,1,0,0,0
+hikvision_download_wizard_hr,access.hikvision.download.wizard,model_hikvision_download_wizard,hr_hikvision_attendance.hikvision_hr_group,1,0,0,0

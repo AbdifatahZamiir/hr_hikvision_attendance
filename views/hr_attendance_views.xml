@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="hr_attendance_inherit_view_tree" model="ir.ui.view">
+        <field name="name">hr.attendance.inherit.view.form</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="hikvision_id" string="Device"/>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="after">
+                <field name="department_id" string="Department"/>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="before">
+                <field name="biometric_id" string="Biometric ID"/>
+            </xpath>
+            <xpath expr="//field[@name='check_in']" position="after">
+                <field name="check_in_visible" string="Check In" />
+            </xpath>
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="check_out_time" string="Check Out" />
+            </xpath>
+            <xpath expr="//field[@name='check_out']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="show_check_in" optional="hide" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='check_in']" position="attributes">
+                <attribute name="string">Date</attribute>
+                <attribute name="widget">datetime</attribute>
+                <attribute name="options">{'show_time':-false}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_attendance_inherit_view_form" model="ir.ui.view">
+        <field name="name">hr.attendance.inherit.view.form</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="show_check_in" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

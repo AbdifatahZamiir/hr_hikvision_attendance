@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!--    Defined all menus here -->
+    <menuitem id="hikvision_device_details_menu" name="Biometric Device" parent="hr_attendance.menu_hr_attendance_root" sequence="21"/>
+    <menuitem id="hikvision_device_details_sub_menu" action="hikvision_device_details_action" parent="hikvision_device_details_menu" sequence="21"/>
+    <menuitem id="hikvision_attendance_sub_menu" action="hikvision_attendance_action" parent="hikvision_device_details_menu" sequence="21"/>
+</odoo>

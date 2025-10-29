@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hikvision_download_wizard_form" model="ir.ui.view">
+        <field name="name">hikvision.download.wizard.form</field>
+        <field name="model">hikvision.download.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Download Attendance Records from a Date Range">
+                <group>
+                    <field name="date_start" string="Date Range" widget="daterange" 
+                        options="{&quot;end_date_field&quot;:&quot;date_end&quot;,&quot;always_range&quot;:&quot;1&quot;}" required="date_start or date_end" />
+                    <field name="date_end" invisible="1" required="date_start" />
+                </group>
+                <footer>
+                    <button string="Download Data" type="object" name="action_get_attendance"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

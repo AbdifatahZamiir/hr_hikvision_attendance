@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_attendance_wizard_form" model="ir.ui.view">
+        <field name="name">hr.attendance.wizard.form</field>
+        <field name="model">hr.attendance.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Search Attendance Records from a Date Range">
+                <group>
+                    <field name="date_start" string="Date Range" widget="daterange"
+                            options="{&quot;end_date_field&quot;:&quot;date_end&quot;,&quot;always_range&quot;:&quot;1&quot;}" required="date_start or date_end" />
+                    <field name="date_end" invisible="1" required="date_start" />
+                    <field name="device_id" />
+                </group>
+                <footer>
+                    <button string="Search Data" type="object" name="action_search_attendance" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_attendance_wizard" model="ir.actions.act_window">
+        <field name="name">Search attendance</field>
+        <field name="res_model">hr.attendance.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field> <!-- IMPORTANTE: para que sea modal -->
+    </record>
+</odoo>

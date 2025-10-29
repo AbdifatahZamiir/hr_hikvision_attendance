@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hikvision_manager_group" model="res.groups">
+        <field name="name">Hikvision Manager Group</field>
+    </record>
+    <record id="hikvision_hr_group" model="res.groups">
+        <field name="name">Hikvision Human Resources Group</field>
+    </record>
+</odoo>

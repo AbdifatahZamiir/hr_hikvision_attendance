@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hikvision_attendance_view_tree" model="ir.ui.view">
+        <field name="name">hikvision.attendance.view.tree</field>
+        <field name="model">hr.hikvision.attendance</field>
+        <field name="arch" type="xml">
+            <list string="" editable="bottom">
+                <field name="device_id" />
+                <field name="device_id_num" />
+                <field name="employee_id" />
+                <field name="punching_time" />
+                <field name="attendance_type" />
+            </list>
+        </field>
+    </record>
+    <record id="hikvision_attendance_action" model="ir.actions.act_window">
+        <field name="name">Attendance</field>
+        <field name="res_model">hr.hikvision.attendance</field>
+        <field name="view_mode">list</field> 
+    </record>
+</odoo>

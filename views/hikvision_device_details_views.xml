@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="hikvision_device_details_view_tree" model="ir.ui.view">
+        <field name="name">hr.hikvision.view.tree</field>
+        <field name="model">hr.hikvision</field>
+        <field name="arch" type="xml">
+            <list string="">
+                <field name="is_public" invisible="1" optional="hide"/>
+                <field name="name"/>
+                <field name="device_ip"/>
+                <field name="port"/>
+                <field name="ubication"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hikvision_device_details_view_form" model="ir.ui.view">
+        <field name="name">hr.hikvision.view.form</field>
+        <field name="model">hr.hikvision</field>
+        <field name="arch" type="xml">
+            <form string="">
+            <header>
+                    <button name="action_device_connect" type="object" class="btn btn-secondary">
+                        <i class="fa fa-fw o_button_icon fa-television"/>
+                        Test Connection
+                    </button>
+                    <button name="action_open_wizard" string="Download Attendances" type="object"
+                                        class="oe_highlight"/>
+                    <button name="action_upload_users" string=" Upload Users to Device"
+                            type="object" class="oe_highlight"/>
+            </header> 
+                <sheet>
+                <div class="row justify-content-between position-relative w-100 m-0 mb-2">
+                        <div class="oe_title mw-75 ps-0 pe-2">
+                        <h1 class="d-flex flex-row align-items-center">
+                        <field name="name" placeholder="Hikvision's Name" style="font-size: min(4vw, 2.6rem);"/>
+                        </h1>
+                        </div>
+                    </div>
+                <group>
+                    <group string="Device Connection Specifications">
+                        <field name="is_public" />
+                        <field name="device_ip"/>
+                        <field name="local_ip" invisible="not is_public"/>
+                        <field name="port" />
+                    </group>
+                    <group string="Device User Specifications">
+                        <field name="device_user"/>
+                        <field name="device_password" password="True" />
+                        <field name="ubication"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Action for the biometric device -->
+    <record id="hikvision_device_details_action" model="ir.actions.act_window">
+        <field name="name">Hikvision Device</field>
+        <field name="res_model">hr.hikvision</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
